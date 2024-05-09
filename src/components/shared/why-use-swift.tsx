@@ -29,7 +29,7 @@ export function WhyUseSwift() {
   return (
     <div className="flex flex-col gap-y-3">
       <div className="flex flex-col">
-        <h3 className="text-lg font-semibold">Why use swift</h3>
+        <h3 className="text-lg font-semibold">Why Use Bullet Visa</h3>
         <p className="text-foreground/80">
           Discover unimaginable visa benefits
         </p>
