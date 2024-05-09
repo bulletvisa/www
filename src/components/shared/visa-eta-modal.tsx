@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { CalendarIcon, CheckCircle2, MapPin } from "lucide-react";
-import { format } from "date-fns";
+import { format, addBusinessDays } from "date-fns";
 import {
   Dialog,
   DialogContent,
@@ -96,6 +96,7 @@ export const VisaEtaModal: React.FC<VisaEtaModalProps> = ({
                   selected={date}
                   onSelect={handleDateChange}
                   initialFocus
+                  fromDate={new Date()}
                 />
               </PopoverContent>
             </Popover>
@@ -113,7 +114,9 @@ export const VisaEtaModal: React.FC<VisaEtaModalProps> = ({
           ) : (
             <p className="text-foreground/75">
               Get it delivered by{" "}
-              <span className="text-primary font-semibold">16th May 2024</span>{" "}
+              <span className="text-primary font-semibold">
+                {format(addBusinessDays(date!, 5), "PPP")}
+              </span>{" "}
               if applied within{" "}
               <span className="text-green-700 font-semibold">1 hr 15 mins</span>
             </p>

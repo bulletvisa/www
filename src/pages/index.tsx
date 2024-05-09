@@ -19,12 +19,25 @@ export default function Page() {
         <title>BulletVisa</title>
         <meta
           name="description"
-          content="Get Singapore Visa for Indians in 4 to 5 working days"
+          content="Get your Singapore visa quickly and efficiently with Bullet Visa. Our streamlined process ensures swift approvals, making your travel plans hassle-free."
+        />
+        <link
+          rel="icon"
+          href="https://bulletvisa.com/wp-content/uploads/2024/05/cropped-favi-32x32.png"
+          sizes="32x32"
+        />
+        <link
+          rel="icon"
+          href="https://bulletvisa.com/wp-content/uploads/2024/05/cropped-favi-192x192.png"
+          sizes="192x192"
+        />
+        <link
+          rel="apple-touch-icon"
+          href="https://bulletvisa.com/wp-content/uploads/2024/05/cropped-favi-180x180.png"
         />
       </Head>
 
       <TopNavigationBar />
-
       <main className="bg-white p-4 md:px-16 flex flex-col gap-6 relative">
         <InfoStrip />
         <div className="flex gap-6">
