@@ -12,12 +12,7 @@ export const InfoStrip: React.FC = () => {
           className="h-6"
         />
         <p>
-          Visa on time guarantee - If you don&apos;t{" "}
-          <span className="hidden md:inline-block">
-            {" "}
-            receive your visa in 3 working days you will get a{" "}
-          </span>{" "}
-          complete refund no questions asked.
+          Visa on time guarantee - If you don&apos;t receive your visa in 3-5 working days you will get a complete refund no questions asked.
         </p>
       </div>
     </div>
