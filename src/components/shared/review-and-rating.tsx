@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Card, CardFooter, CardHeader } from "@/components/ui/card";
-import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { formatDistance } from "date-fns";
 
 const ratings = [
   {
@@ -17,60 +18,74 @@ const ratings = [
 
 const reviews = [
   {
-    avatar:
-      "https://images.pexels.com/photos/1310474/pexels-photo-1310474.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    name: "Linda Smith",
-    time: "25d ago",
+    name: "Rahul Mehta",
     review:
-      "Absolutely phenomenal service! With precise documentation, I had my Australian visa in hand within 24 hours of submission. Highly recommend this team for their efficiency and reliability.",
+      "BulletVisa.com helped me get my Singapore visa in just three days! The tracking feature kept me updated and the support was excellent.",
+    time: 1683713210,
+    color: "bg-red-100",
   },
   {
-    avatar:
-      "https://images.pexels.com/photos/428364/pexels-photo-428364.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    name: "Carlos Hernandez",
-    time: "40d ago",
+    name: "Ananya Gupta",
     review:
-      "Incredible turnaround time! I entrusted them with my Canadian visa application and was pleasantly surprised to receive approval within a day.",
+      "Impressed with their quick service! The team was responsive, making the visa process seamless.",
+    time: 1683716210,
+    color: "bg-green-100",
   },
   {
-    avatar:
-      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    name: "Emily Johnson",
-    time: "15d ago",
+    name: "Vikram Sharma",
     review:
-      "Top-notch service! I submitted my UK visa application, and thanks to their meticulous work, I had my visa sorted within a single day. Their professionalism is unmatched.",
+      "The 3-5 day guarantee is genuine. I received my visa on time and was kept informed.",
+    time: 1683719210,
+    color: "bg-blue-100",
   },
   {
-    avatar:
-      "https://images.unsplash.com/photo-1548280684-8c051518e195?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    name: "David Kim",
-    time: "20d ago",
+    name: "Priya Deshmukh",
     review:
-      "Exceptional efficiency! I applied for a Schengen visa and received approval within just one day.",
+      "BulletVisa.com made the visa application stress-free. Customer support answered my questions quickly.",
+    time: 1683722210,
+    color: "bg-yellow-100",
   },
   {
-    avatar:
-      "https://images.unsplash.com/photo-1619420674819-da50b9f76950?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    name: "Maria Rodriguez",
-    time: "35d ago",
+    name: "Amit Khurana",
     review:
-      "Remarkable service! I entrusted them with my New Zealand visa application and was amazed to find it approved within 24 hours. Highly recommend their services for anyone seeking a hassle-free experience.",
+      "I was initially skeptical, but BulletVisa.com delivered my Singapore visa in four days! Efficient and reliable.",
+    time: 1683725210,
+    color: "bg-purple-100",
   },
   {
-    avatar:
-      "https://images.unsplash.com/photo-1614289371518-722f2615943d?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    name: "Mohammed Ali",
-    time: "10d ago",
+    name: "Sneha Nair",
     review:
-      "Unparalleled professionalism! With all the necessary documents provided, I received my Dubai visa approval within a day. This team sets the bar high for efficiency and reliability.",
+      "Amazing service and quick visa delivery! Customer support guided me step-by-step.",
+    time: 1683728210,
+    color: "bg-pink-100",
   },
   {
-    avatar:
-      "https://images.unsplash.com/photo-1583674392771-2abf6be75965?q=80&w=1967&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    name: "Anna Kowalski",
-    time: "28d ago",
+    name: "Arjun Bhatia",
     review:
-      "Outstanding service! I applied for a US visa and was astounded to receive approval within 24 hours. The team's attention to detail and swift processing made all the difference. Highly recommended!",
+      "BulletVisa.com made it simple. Their updates and support were very helpful.",
+    time: 1683731210,
+    color: "bg-orange-100",
+  },
+  {
+    name: "Nisha Patel",
+    review:
+      "Thanks to their excellent support and timely updates, I felt confident throughout the process.",
+    time: 1683734210,
+    color: "bg-teal-100",
+  },
+  {
+    name: "Rajesh Kumar",
+    review:
+      "I was nervous about getting my Singapore visa, but BulletVisa.com delivered faster than expected.",
+    time: 1683737210,
+    color: "bg-indigo-100",
+  },
+  {
+    name: "Meena Reddy",
+    review:
+      "I'm glad I chose BulletVisa.com. Their tracking system and support made my visa application smooth.",
+    time: 1683740210,
+    color: "bg-cyan-100",
   },
 ];
 
@@ -104,25 +119,23 @@ export function ReviewAndRatings() {
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {reviews.map((review, i) => (
-          <Card key={i} className="bg-gray-50 border-slate-300 h-max">
+        {reviews.map(({ name, review, color, time }, i) => (
+          <Card key={i} className="bg-gray-50">
             <CardHeader>
               <Avatar>
-                <AvatarImage
-                  src={review.avatar}
-                  alt={review.name}
-                  className="object-cover"
-                />
+                <AvatarFallback className={color}>
+                  {name
+                    .split(" ")
+                    .map((text) => text.charAt(0))
+                    .join("")}
+                </AvatarFallback>
               </Avatar>
             </CardHeader>
             <CardFooter className="flex flex-col gap-2">
               <div className="flex items-center justify-between w-full">
-                <p className="text-xs font-bold text-foreground/85">
-                  {review.name}
-                </p>
-                <p className="text-xs text-foreground/65">{review.time}</p>
+                <p className="font-bold text-foreground/85">{name}</p>
               </div>
-              <div className="text-xs text-foreground/75">{review.review}</div>
+              <div className="text-foreground/75">{review}</div>
             </CardFooter>
           </Card>
         ))}

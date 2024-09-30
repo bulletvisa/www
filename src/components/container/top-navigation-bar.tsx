@@ -1,8 +1,11 @@
-import { ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { AppLogo } from "@/components/shared/app-logo";
-import { MAIN_WEBSITE_URL, ACCOUNT_WEBSITE_URL } from "@/constants";
+import {
+  MAIN_WEBSITE_URL,
+  ACCOUNT_WEBSITE_URL,
+  CHAT_WITH_US_URL,
+} from "@/constants";
 
 export function TopNavigationBar() {
   return (
@@ -12,15 +15,14 @@ export function TopNavigationBar() {
           <AppLogo />
         </Link>
 
-        <div className="flex items-center gap-4">
-          <Link
-            href="/refund-and-cancellation-policy"
-            className="flex gap-1 items-center text-primary"
-          >
-            <ShieldCheck className="w-5" />
-            <p className="text-xs leading-none">
-              On Time or <span className="block">Full Refund</span>
-            </p>
+        <div className="flex items-center gap-2">
+          <Link href={CHAT_WITH_US_URL}>
+            <Button
+              variant="outline"
+              className="text-xs md:text-sm h-8 md:h-10 px-3 md:px-4"
+            >
+              Chat with us
+            </Button>
           </Link>
 
           <Link href={`${ACCOUNT_WEBSITE_URL}/applications`}>

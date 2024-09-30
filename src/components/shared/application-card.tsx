@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronUp, Minus, Plus, UserRound } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,19 +12,22 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { VisaEtaModal } from "@/components/shared/visa-eta-modal";
 import { cn } from "@/lib/utils";
+import { useIsMobileScreen } from "@/hooks/use-is-mobile-screen";
 import { ACCOUNT_WEBSITE_URL } from "@/constants";
 
 type ApplicationCardProps = {
   data: {
     governmentFees: number;
-    swiftFees: number;
+    bulletvisaFees: number;
     gstPercentage: number;
   };
 };
 
 export const ApplicationCard: React.FC<ApplicationCardProps> = (props) => {
+  const isMobileScreen = useIsMobileScreen();
+
   const [travelerCount, setTravelerCount] = useState(1);
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(true);
 
   const [isVisaETAModalOpen, setIsVisaETAModalOpen] = useState(false);
 
@@ -59,9 +62,15 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = (props) => {
     window.location.href = `${ACCOUNT_WEBSITE_URL}/application?${searchParams}`;
   };
 
+  useEffect(() => {
+    if (isMobileScreen !== null) {
+      setIsExpanded(!isMobileScreen);
+    }
+  }, [isMobileScreen]);
+
   return (
     <>
-      <Card className="border w-full lg:w-1/3 rounded-xl h-max flex flex-col z-20 fixed bottom-0 lg:sticky lg:top-6 right-0">
+      <Card className="border w-full lg:w-1/3 rounded-none md:rounded-xl h-max flex flex-col z-20 fixed bottom-0 lg:sticky lg:top-6 right-0">
         <CardHeader
           className={cn("duration-300 transition-all", !isExpanded && "pb-0")}
         >
@@ -106,10 +115,10 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = (props) => {
                   </p>
                 </div>
                 <div className="flex items-center justify-between">
-                  <p className="text-foreground/75">Shift Fee</p>
+                  <p className="text-foreground/75">Bulletvisa Fee</p>
                   <p>
                     Rs{" "}
-                    {(props.data.swiftFees * travelerCount).toLocaleString(
+                    {(props.data.bulletvisaFees * travelerCount).toLocaleString(
                       "en-IN",
                     )}
                   </p>
@@ -120,22 +129,28 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = (props) => {
           <Separator />
           <div
             onClick={handleExpandButtonClick}
-            className="flex items-center justify-between cursor-pointer relative"
+            className={cn(
+              "flex items-center justify-between cursor-pointer relative",
+              !isMobileScreen && "pointer-events-none",
+            )}
           >
-            <ChevronUp
-              className={cn(
-                "transition-all duration-300 h-4 w-4 absolute top-0 left-1/2",
-                isExpanded && "rotate-180",
-              )}
-            />
+            <div className="flex gap-2 items-center">
+              <ChevronUp
+                className={cn(
+                  "transition-all duration-300 h-4 w-4",
+                  isExpanded && "rotate-180",
+                  !isMobileScreen && "hidden",
+                )}
+              />
+              <p className="text-foreground/75">Total Amount</p>
+            </div>
 
-            <p className="text-foreground/75">Total</p>
             <div className="flex items-center gap-1">
               <div className="flex flex-col items-end">
                 <p>
                   Rs{" "}
                   {(
-                    (props.data.governmentFees + props.data.swiftFees) *
+                    (props.data.governmentFees + props.data.bulletvisaFees) *
                     travelerCount
                   ).toLocaleString("en-IN")}
                 </p>

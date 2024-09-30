@@ -70,7 +70,7 @@ export const VisaEtaModal: React.FC<VisaEtaModalProps> = ({
         <div className="flex flex-col gap-5">
           <div className="flex flex-col gap-2">
             <Label className="text-foreground/75">
-              Enter you departure date
+              Enter you application date
             </Label>
             <Popover open={isCalendarOpen}>
               <PopoverTrigger onClick={handleCalendarInputClick} asChild>

@@ -103,10 +103,8 @@ export function DocumentsRequired() {
                     />
                   </CardHeader>
                   <CardFooter className="flex flex-col items-start gap-y-1">
-                    <h3 className="text-sm font-semibold">{item.title}</h3>
-                    <p className="text-xs text-foreground/80">
-                      {item.subtitle}
-                    </p>
+                    <h3 className="font-semibold">{item.title}</h3>
+                    <p className="text-foreground/80">{item.subtitle}</p>
                   </CardFooter>
                 </Card>
               ))}
