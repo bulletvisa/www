@@ -53,11 +53,15 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = (props) => {
     setIsVisaETAModalOpen(false);
   };
 
-  const handleApplyApplication = () => {
+  const handleApplyApplication = (selectedDate: Date) => {
     const searchParams = new URLSearchParams();
 
     searchParams.set("travelerCount", travelerCount.toString());
     searchParams.set("visaCountry", "SINGAPORE");
+    searchParams.set(
+      "pickupPreferenceDate",
+      selectedDate.toISOString().split("T")[0],
+    );
 
     window.location.href = `${ACCOUNT_WEBSITE_URL}/application?${searchParams}`;
   };

@@ -22,7 +22,7 @@ import { cn } from "@/lib/utils";
 type VisaEtaModalProps = {
   isOpen: boolean;
   onClose: () => void;
-  onApply: () => void;
+  onApply: (date: Date) => void;
 };
 
 export const VisaEtaModal: React.FC<VisaEtaModalProps> = ({
@@ -46,8 +46,8 @@ export const VisaEtaModal: React.FC<VisaEtaModalProps> = ({
   };
 
   const handleCheckEtaButtonClick = () => {
-    if (etaChecked) {
-      onApply();
+    if (etaChecked && date) {
+      onApply(date);
     } else {
       setEtaChecked(true);
     }
@@ -116,9 +116,7 @@ export const VisaEtaModal: React.FC<VisaEtaModalProps> = ({
               Get it delivered by{" "}
               <span className="text-primary font-semibold">
                 {format(addBusinessDays(date!, 5), "PPP")}
-              </span>{" "}
-              if applied within{" "}
-              <span className="text-green-700 font-semibold">1 hr 15 mins</span>
+              </span>
             </p>
           )}
 
