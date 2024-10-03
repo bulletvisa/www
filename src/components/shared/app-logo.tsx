@@ -10,8 +10,8 @@ export const AppLogo: React.FC<AppLogoProps> = ({ fill = "blue" }) => {
     <Image
       src={
         fill === "blue"
-          ? "/assets/images/app-logo.svg"
-          : "/assets/images/app-logo-white.svg"
+          ? "/assets/images/app-logo.png"
+          : "/assets/images/app-logo-white.png"
       }
       width={100}
       height={100}

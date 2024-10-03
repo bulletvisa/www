@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { AppLogo } from "@/components/shared/app-logo";
-import { ApplicationCard } from "../shared/application-card";
 import { useIsMobileScreen } from "@/hooks/use-is-mobile-screen";
 import { CHAT_WITH_US_URL } from "@/constants";
 

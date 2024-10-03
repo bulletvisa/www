@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { CalendarIcon, CheckCircle2, MapPin } from "lucide-react";
-import { format, addBusinessDays } from "date-fns";
+import { format, addBusinessDays, startOfDay } from "date-fns";
+import { formatInTimeZone, toDate } from "date-fns-tz";
 import {
   Dialog,
   DialogContent,
@@ -18,6 +19,7 @@ import {
 } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { cn } from "@/lib/utils";
+import { TIMEZONE } from "@/constants/index";
 
 type VisaEtaModalProps = {
   isOpen: boolean;
@@ -31,7 +33,6 @@ export const VisaEtaModal: React.FC<VisaEtaModalProps> = ({
   onApply,
 }) => {
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
-
   const [date, setDate] = useState<Date>();
   const [etaChecked, setEtaChecked] = useState(false);
 
@@ -40,13 +41,22 @@ export const VisaEtaModal: React.FC<VisaEtaModalProps> = ({
   };
 
   const handleDateChange = (newDate: Date | undefined) => {
+    if (newDate) {
+      setDate(newDate);
+    } else {
+      setDate(undefined);
+    }
     setIsCalendarOpen(false);
-    setDate(newDate);
     setEtaChecked(false);
   };
 
   const handleCheckEtaButtonClick = () => {
     if (etaChecked && date) {
+      console.log("Applying date (local):", date.toString());
+      console.log(
+        "Applying date (IST):",
+        formatInTimeZone(date, TIMEZONE, "PPP pp"),
+      );
       onApply(date);
     } else {
       setEtaChecked(true);
@@ -70,7 +80,7 @@ export const VisaEtaModal: React.FC<VisaEtaModalProps> = ({
         <div className="flex flex-col gap-5">
           <div className="flex flex-col gap-2">
             <Label className="text-foreground/75">
-              Enter you application date
+              Enter your application date (IST)
             </Label>
             <Popover open={isCalendarOpen}>
               <PopoverTrigger onClick={handleCalendarInputClick} asChild>
@@ -82,7 +92,11 @@ export const VisaEtaModal: React.FC<VisaEtaModalProps> = ({
                   )}
                 >
                   <div className="flex items-center gap-2">
-                    {date ? format(date, "PPP") : <span>Pick a date</span>}
+                    {date ? (
+                      formatInTimeZone(date, TIMEZONE, "PPP")
+                    ) : (
+                      <span>Pick a date</span>
+                    )}
                     {etaChecked && date && (
                       <CheckCircle2 fill="green" className="text-white" />
                     )}
@@ -96,7 +110,10 @@ export const VisaEtaModal: React.FC<VisaEtaModalProps> = ({
                   selected={date}
                   onSelect={handleDateChange}
                   initialFocus
-                  fromDate={new Date()}
+                  disabled={(date) =>
+                    date <
+                    startOfDay(toDate(new Date(), { timeZone: TIMEZONE }))
+                  }
                 />
               </PopoverContent>
             </Popover>
@@ -115,7 +132,7 @@ export const VisaEtaModal: React.FC<VisaEtaModalProps> = ({
             <p className="text-foreground/75">
               Get it delivered by{" "}
               <span className="text-primary font-semibold">
-                {format(addBusinessDays(date!, 5), "PPP")}
+                {formatInTimeZone(addBusinessDays(date!, 5), TIMEZONE, "PPP")}
               </span>
             </p>
           )}
