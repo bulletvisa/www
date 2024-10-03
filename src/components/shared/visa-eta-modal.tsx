@@ -27,11 +27,7 @@ type VisaEtaModalProps = {
   onApply: (date: Date) => void;
 };
 
-export const VisaEtaModal: React.FC<VisaEtaModalProps> = ({
-  isOpen,
-  onClose,
-  onApply,
-}) => {
+export const VisaEtaModal: React.FC<VisaEtaModalProps> = (props) => {
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const [date, setDate] = useState<Date>();
   const [etaChecked, setEtaChecked] = useState(false);
@@ -57,22 +53,22 @@ export const VisaEtaModal: React.FC<VisaEtaModalProps> = ({
         "Applying date (IST):",
         formatInTimeZone(date, TIMEZONE, "PPP pp"),
       );
-      onApply(date);
+      props.onApply(date);
     } else {
       setEtaChecked(true);
     }
   };
 
   useEffect(() => {
-    if (isOpen) {
+    if (props.isOpen) {
       setIsCalendarOpen(false);
       setDate(undefined);
       setEtaChecked(false);
     }
-  }, [isOpen]);
+  }, [props.isOpen]);
 
   return (
-    <Dialog modal open={isOpen} onOpenChange={onClose}>
+    <Dialog modal open={props.isOpen} onOpenChange={props.onClose}>
       <DialogContent className="max-w-sm w-full">
         <DialogHeader>
           <DialogTitle>Check visa estimate time of arrival</DialogTitle>
