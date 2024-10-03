@@ -14,6 +14,8 @@ import { VisaEtaModal } from "@/components/shared/visa-eta-modal";
 import { cn } from "@/lib/utils";
 import { useIsMobileScreen } from "@/hooks/use-is-mobile-screen";
 import { ACCOUNT_WEBSITE_URL } from "@/constants";
+import { formatInTimeZone } from "date-fns-tz";
+import { TIMEZONE } from "@/constants";
 
 type ApplicationCardProps = {
   data: {
@@ -60,7 +62,7 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = (props) => {
     searchParams.set("visaCountry", "SINGAPORE");
     searchParams.set(
       "pickupPreferenceDate",
-      selectedDate.toISOString().split("T")[0],
+      formatInTimeZone(selectedDate, TIMEZONE, "yyyy-MM-dd"),
     );
 
     window.location.href = `${ACCOUNT_WEBSITE_URL}/application?${searchParams}`;
