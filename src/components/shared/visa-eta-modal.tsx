@@ -48,11 +48,6 @@ export const VisaEtaModal: React.FC<VisaEtaModalProps> = (props) => {
 
   const handleCheckEtaButtonClick = () => {
     if (etaChecked && date) {
-      console.log("Applying date (local):", date.toString());
-      console.log(
-        "Applying date (IST):",
-        formatInTimeZone(date, TIMEZONE, "PPP pp"),
-      );
       props.onApply(date);
     } else {
       setEtaChecked(true);
