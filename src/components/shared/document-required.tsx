@@ -34,12 +34,12 @@ const documents: DocumentsRequiredProps[] = [
       {
         icon: "add-a-photo.svg",
         title: "Photos",
-        subtitle: "3 Photos - (H) 45mm by (W) 35mm",
+        subtitle: "3 Photos - (H) 45mm x (W) 35mm",
       },
       {
         icon: "account-balance.svg",
         title: "Bank Statement",
-        subtitle: "Last 3 months with 75k balance",
+        subtitle: "Last 3 months with 1L balance",
       },
     ],
   },
@@ -64,17 +64,17 @@ const documents: DocumentsRequiredProps[] = [
       {
         icon: "add-a-photo.svg",
         title: "Photos",
-        subtitle: "3 Photos - (H) 45mm by (W) 35mm",
+        subtitle: "3 Photos - (H) 45mm x (W) 35mm",
       },
       {
         icon: "account-balance.svg",
         title: "Bank Statement",
-        subtitle: "Last 3 months with 75k balance",
+        subtitle: "Last 3 months with 1L balance",
       },
       {
         icon: "store.svg",
         title: "GST Certificated & COI",
-        subtitle: "Gst certificate and Certificate of Incorp",
+        subtitle: "Gst certificate and Certificate of Incorp.",
       },
     ],
   },

@@ -16,7 +16,7 @@ export default function Page() {
   return (
     <div>
       <Head>
-        <title>BulletVisa</title>
+        <title>Bulletvisa</title>
         <meta
           name="description"
           content="Get your Singapore visa quickly and efficiently with Bullet Visa. Our streamlined process ensures swift approvals, making your travel plans hassle-free."

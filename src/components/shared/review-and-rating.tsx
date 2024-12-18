@@ -20,7 +20,7 @@ const reviews = [
   {
     name: "Rahul Mehta",
     review:
-      "BulletVisa.com helped me get my Singapore visa in just three days! The tracking feature kept me updated and the support was excellent.",
+      "Bulletvisa.com helped me get my Singapore visa in just three days! The tracking feature kept me updated and the support was excellent.",
     time: 1683713210,
     color: "bg-red-100",
   },
@@ -41,14 +41,14 @@ const reviews = [
   {
     name: "Priya Deshmukh",
     review:
-      "BulletVisa.com made the visa application stress-free. Customer support answered my questions quickly.",
+      "Bulletvisa.com made the visa application stress-free. Customer support answered my questions quickly.",
     time: 1683722210,
     color: "bg-yellow-100",
   },
   {
     name: "Amit Khurana",
     review:
-      "I was initially skeptical, but BulletVisa.com delivered my Singapore visa in four days! Efficient and reliable.",
+      "I was initially skeptical, but Bulletvisa.com delivered my Singapore visa in four days! Efficient and reliable.",
     time: 1683725210,
     color: "bg-purple-100",
   },
@@ -62,7 +62,7 @@ const reviews = [
   {
     name: "Arjun Bhatia",
     review:
-      "BulletVisa.com made it simple. Their updates and support were very helpful.",
+      "Bulletvisa.com made it simple. Their updates and support were very helpful.",
     time: 1683731210,
     color: "bg-orange-100",
   },
@@ -76,14 +76,14 @@ const reviews = [
   {
     name: "Rajesh Kumar",
     review:
-      "I was nervous about getting my Singapore visa, but BulletVisa.com delivered faster than expected.",
+      "I was nervous about getting my Singapore visa, but Bulletvisa.com delivered faster than expected.",
     time: 1683737210,
     color: "bg-indigo-100",
   },
   {
     name: "Meena Reddy",
     review:
-      "I'm glad I chose BulletVisa.com. Their tracking system and support made my visa application smooth.",
+      "I'm glad I chose Bulletvisa.com. Their tracking system and support made my visa application smooth.",
     time: 1683740210,
     color: "bg-cyan-100",
   },

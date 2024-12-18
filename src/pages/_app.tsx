@@ -1,13 +1,13 @@
 import type { AppProps } from "next/app";
-import { GoogleTagManager } from "@next/third-parties/google";
+import { Metrics } from "@/components/shared/metrics";
 
 import "../styles/globals.css";
 
-export default function MyApp({ Component, pageProps }: AppProps) {
+export default function _App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Component {...pageProps} />
-      <GoogleTagManager gtmId="GT-W6VNHM2S" />
+      <Metrics />
     </>
   );
 }

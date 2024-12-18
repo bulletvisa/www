@@ -121,7 +121,7 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = (props) => {
                   </p>
                 </div>
                 <div className="flex items-center justify-between">
-                  <p className="text-foreground/75">Bulletvisa Fee</p>
+                  <p className="text-foreground/75">Bulletvisa Fees</p>
                   <p>
                     Rs{" "}
                     {(props.data.bulletvisaFees * travelerCount).toLocaleString(

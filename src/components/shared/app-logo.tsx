@@ -14,6 +14,8 @@ export const AppLogo: React.FC<AppLogoProps> = ({ fill = "blue" }) => {
           : "/assets/images/app-logo-white.png"
       }
       alt={MAIN_WEBSITE_URL}
+      width={512}
+      height={-2}
       className="w-16 md:w-24"
     />
   );
