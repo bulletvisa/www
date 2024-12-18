@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Script from "next/script";
 import { TopNavigationBar } from "@/components/container/top-navigation-bar";
 import { Footer } from "@/components/container/footer";
 import { CheckPincodeAvailability } from "@/components/shared/check-pincode-availability";
@@ -35,8 +36,29 @@ export default function Page() {
           rel="apple-touch-icon"
           href="https://bulletvisa.com/wp-content/uploads/2024/05/cropped-favi-180x180.png"
         />
+        <Script id="microsoft-clarity" strategy="afterInteractive">
+          {`
+            (function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "oesq5piv7n");
+          `}
+        </Script>
+        <Script id="google-tag-manager" strategy="afterInteractive">
+          {`
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-5LMQK2K6');
+          `}
+        </Script>
       </Head>
-
+      <noscript>
+        <iframe
+          src="https://www.googletagmanager.com/ns.html?id=GTM-5LMQK2K6"
+          height="0"
+          width="0"
+          style={{ display: "none", visibility: "hidden" }}
+        ></iframe>
+      </noscript>
       <TopNavigationBar />
       <main className="bg-white p-4 md:px-16 flex flex-col gap-6 relative">
         <InfoStrip />
