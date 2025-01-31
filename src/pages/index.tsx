@@ -83,7 +83,7 @@ export default function Page() {
           </div>
           <ApplicationCard
             data={{
-              governmentFees: 1800,
+              governmentFees: 2100,
               gstPercentage: 18,
               bulletvisaFees: 1199,
             }}
